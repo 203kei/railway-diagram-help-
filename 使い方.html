@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>使い方ガイド - 鉄道ダイヤグラム作成ツール</title>
+<style>
+  body { font-family: sans-serif; margin: 0; background: #f2f5f8; color: #1d2b3a; line-height: 1.7; }
+  header { background: #17324d; color: #fff; padding: 18px 22px; }
+  header h1 { margin: 0; font-size: 1.3rem; }
+  main { max-width: 800px; margin: 20px auto; padding: 20px; background: #fff; border-radius: 10px; border: 1px solid #d9e1e9; }
+  h2 { border-bottom: 2px solid #1769aa; padding-bottom: 5px; margin-top: 28px; font-size: 1.15rem; }
+  .point { background: #e0f2fe; border-left: 4px solid #1769aa; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }
+  .back-btn { display: inline-block; margin-top: 20px; padding: 10px 16px; background: #1769aa; color: #fff; text-decoration: none; border-radius: 7px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>鉄道ダイヤグラム作成ツール 使い方ガイド</h1>
+</header>
+
+<main>
+  <p>このツールは、ブラウザだけで簡単に鉄道のダイヤグラム（運行図表）を作成・保存できるWebアプリです。</p>
+
+  <h2>1. 駅を登録する</h2>
+  <p>左側の「1. 駅の管理」から駅名を入力して追加します。</p>
+  <ul>
+    <li>駅名は時刻表の左端から直接書き換えられます。</li>
+    <li>「↑」「↓」ボタンで駅の順番を入れ替えられます。</li>
+  </ul>
+
+  <h2>2. 列車と時刻を入力する</h2>
+  <p>列車名やスジの色を決めて、右側の時刻表に時間を入力します。</p>
+  <div class="point">
+    <strong>💡 時刻入力のコツ：</strong><br>
+    「0625」のように4桁の数字で入力すると、自動で「06:25」に変換されます！<br>
+    深夜の翌日分は「2530」、前日分は「-0030」のように入力できます。
+  </div>
+
+  <h2>3. ダイヤグラムを見る・保存する</h2>
+  <p>上の「ダイヤグラム」タブを押すとスジが描画されます。JSON形式で保存しておけば、あとから続きを編集できます！</p>
+  <p>保存したjsonファイルを読み込みたい場合、上の「ダイヤグラム」タブを押したあと、読み込みボタンを押し、使いたいファイルを読み込ませてください<p>
+
+<h2>4. よくある（予定）のご質問・Ｑ＆Ａ</h2>
+<p><strong>Q. エラーが起きた</strong><br>
+A. エラーコードをご確認ください</p>
+
+<table border="1" style="border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 8px 0 16px;">
+  <thead>
+    <tr style="background-color: #17324d; color: #ffffff;">
+      <th style="padding: 8px; text-align: left; width: 90px;">コード</th>
+      <th style="padding: 8px; text-align: left;">内容・原因</th>
+      <th style="padding: 8px; text-align: left;">対処法</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding: 8px;"><strong>E1001</strong></td>
+      <td style="padding: 8px;">駅名が空欄のまま変更しようとした</td>
+      <td style="padding: 8px;">ちゃんと駅名を入れてください。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E1002</strong></td>
+      <td style="padding: 8px;">同じ名前の駅を登録しようとした</td>
+      <td style="padding: 8px;">環状線でも「天王寺(始発)」「天王寺(終着)」のように区別してください。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E1003</strong></td>
+      <td style="padding: 8px;">最後の1個のプロジェクトを削除しようとした</td>
+      <td style="padding: 8px;">最低1個は残す仕様です。「＋新規プロジェクト」を作ってから消してください。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E2001</strong></td>
+      <td style="padding: 8px;">列車番号・列車名が未入力</td>
+      <td style="padding: 8px;">名無しの列車は走らせられません。適当でもいいので名前を入れてください。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E2002</strong></td>
+      <td style="padding: 8px;">時刻の入力形式がおかしい</td>
+      <td style="padding: 8px;">「0625」のように4桁（または2530・-0030）で入力してください。60分以上は存在しません。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E2003</strong></td>
+      <td style="padding: 8px;">時刻が入っている駅が1駅以下</td>
+      <td style="padding: 8px;">線が引けないので、最低2駅以上は時刻を入れてください。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E3001</strong></td>
+      <td style="padding: 8px;">複製時にずらす時間が整数じゃない</td>
+      <td style="padding: 8px;">「30」や「-15」のように半角の整数を入れてください。小数点は非対応です。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E4001</strong></td>
+      <td style="padding: 8px;">ダイヤグラムの表示開始・終了時刻が不正</td>
+      <td style="padding: 8px;">終了時刻が開始時刻より前になっていませんか？確認してください。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E5001</strong></td>
+      <td style="padding: 8px;">読み込んだJSONの形式が違う</td>
+      <td style="padding: 8px;">このツールで保存したJSONファイルか確認してください。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E5002</strong></td>
+      <td style="padding: 8px;">JSON内に駅名が空欄のデータがある</td>
+      <td style="padding: 8px;">JSONを手動で書き換えた場合は修正してください。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E5003</strong></td>
+      <td style="padding: 8px;">JSON内に同じ駅名が重複している</td>
+      <td style="padding: 8px;">重複している駅名を変更してから読み込んでください。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E5004</strong></td>
+      <td style="padding: 8px;">JSONファイル自体が壊れている</td>
+      <td style="padding: 8px;">中身を消した、余計なものを書いたなどで、JSONの構文が壊れています。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E5005</strong></td>
+      <td style="padding: 8px;">PNG画像のデータ変換に失敗</td>
+      <td style="padding: 8px;">ブラウザのメモリ不足等の可能性があります。SVG保存をお試しください。</td>
+    </tr>
+    <tr>
+      <td style="padding: 8px;"><strong>E5006</strong></td>
+      <td style="padding: 8px;">PNG画像の生成処理に失敗</td>
+      <td style="padding: 8px;">駅数や表示時間が極端に広いと失敗することがあります。SVG保存をお試しください。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Q. 保存していないのにサイトを閉じちゃった！せっかく作ったのに...</strong><br>
+A. 大丈夫です。基本的にデータが残っています<br>（ただしキャッシュを削除した場合は消えますので過信しすぎないでください）</p>
+
+<p><strong>Q. 列車を登録したのに、ダイヤグラムに線が出てきません！</strong><br>
+A. 以下の3つを確認してください。<br>
+1. 登録済み列車の「表示」のチェックが外れていないか<br>
+2. ダイヤグラムの「表示開始〜表示終了」の時間枠からハミ出ていないか<br>
+3. 時刻が1駅分しか入っていない（線は2駅以上ないと引けません）</p>
+
+<p><strong>Q. スマホでも使えますか？</strong><br>
+A. 使えますが、かなりやりにくいのでPCやタブレットをおすすめします。<br>ChromeならPC版サイトを見る機能があるので人によってはそっちのほうがやりやすい...かも
+</p>
+
+<!-- テンプレ<p><strong>Q. 質問</strong><br>
+A. 答え</p>-->
+
+<p><strong>Q. 作者にクレームや新機能の要望をしたい！</strong><br>
+A. <a href="https://forms.cloud.microsoft/r/REisbNcKMs" target="_blank" rel="noopener noreferrer">ここから</a>お願いします
+<br>※Microsoft Formsに飛びます</p>
+  <!-- メモ:<h2>:見出し　<p>文章〜</p>　通常 -->
+
+  <a href="https://203kei.github.io/railway-diagram/" class="back-btn">← ツールに戻る</a>
+</main>
+
+</body>
+</html>
